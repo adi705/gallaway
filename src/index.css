@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css?family=Libre Baskerville');
+/*
+=============== 
+Variables
+===============
+*/
+:root {
+ 
+  /* grey used for paragraphs */
+  --clr-black: #000000;
+  --clr-grey: #7D7D7D;
+  --clr-light-grey:#E5E5E5;
+  --clr-white: #FFFFFF;
+  --clr-light-white: #F3F3F3;
+
+  --transition: all 0.3s linear;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ }
+/*
+=============== 
+Global Styles
+===============
+*/
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+.btn {
+  background: var(--clr-primary-5);
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  
+  color: var(--clr-white);
+  letter-spacing: var(--spacing);
+  border-color: transparent;
+  cursor: pointer;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  
+}
+
+body {
+  font-family: 'Libre Baskerville';
+}
+
+h1{
+  font-size: 56px;
+  line-height: 64px;
+  font-weight: bold;
+}
+
+h2{
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+}
+
+.subhead1{
+  font-size: 15px;
+  line-height: 19px;
+  font-weight:normal;
+}
+
+.subhead2{
+  font-size: 13px;
+  line-height: 17px;
+  font-weight:normal;
+}
+
+.link1{
+  font-size: 12px;
+  line-height: 15px;
+  font-weight:bold;
+  letter-spacing: 2.5px;
+  color: var(--clr-grey);
+}
+
+p{
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: bold;
+}
+/*home*/
+.home-title-container{
+  display: flex;
+  
+  justify-content: space-between;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  border-bottom: 1px solid var(--clr-light-grey);
+  padding-bottom: 1rem;
+}
+
+.home-title-container a{
+  display: flex;
+  align-items: center;
+
+}
+
+.data-item{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px; /* Add a small margin between items */
+  border: 1px solid black;
+  
+}
+
+.gallery-image
+ {
+  display: block;
+  width: 90%;
+  height: auto;
+  border: 10px solid black;
+ 
+}
+
+.row {
+  display: -ms-flexbox; 
+  display: flex;
+  -ms-flex-wrap: wrap; 
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; 
+  flex: 25%;
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.column div{
+  
+  width: auto;
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.gallery-image-name{
+  position: absolute;
+  bottom: 4rem;
+  left: 3rem;
+  font-size: larger;
+  width: 50%;
+  color: #fff;
+  z-index: 999;
+}
+
+.gallery-image-artist{
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  width: 50%;
+  color: #fff;
+  z-index: 999;
+
+}
+
+.column div img {
+  width: 100%;
+  flex-grow: 1;
+  transition: filter 0.3s;
+  transition: var(--transition);
+}
+
+.column div img:hover {
+  
+ 
+ filter: brightness(60%);
+ box-shadow: var(--dark-shadow);
+  
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ------------------------slide show-----------------------------------*/
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  height: 1000px;
+  background-color: var(--clr-white);
+  overflow: hidden;
+}
+
+.slideshow-item {
+ 
+  padding: 20px;
+  background-color: var(--clr-white);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s, transform 0.5s ease-in-out; /* Add transitions for opacity and transform */
+
+ 
+}
+
+.thumbnail-container{
+  position: relative;
+  /*width:320px;*/
+  width: 100%;
+  height: 400px;
+}
+
+.thumbnail-image{
+  display: block;
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  width:100%; /* Automatically adjust the width while maintaining aspect ratio */
+  height: 100%; /* Automatically adjust the height while maintaining aspect ratio */
+  object-fit:cover;
+  top:0;
+  left: 0;
+  transition: var(--transition);
+ }
+
+ .thumbnail-image:hover{
+  cursor: pointer;
+  box-shadow: var(--dark-shadow);
+  box-shadow: 9px 9px 9px rgba(0, 0, 0, 7.4);
+ }
+
+
+.title{
+  position:absolute;
+  top:20rem;
+  background-color: var(--clr-white);
+  z-index: 100;
+  width: 300px;
+  height: 104px;
+  padding: 1rem;
+  background-color: var(--clr-white);
+  padding-left: 0;
+}
+
+.artist-iimage-container{
+  position: relative;
+  width:64px;
+  height: 64px;
+  margin-top: 2rem;
+}
+.artist-iimage-container img{
+  display: block;
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  width:100%; /* Automatically adjust the width while maintaining aspect ratio */
+  height: 100%; /* Automatically adjust the height while maintaining aspect ratio */
+  object-fit:cover;
+  top:0;
+  left: 0;
+ 
+}
+
+.yea{
+  position: absolute;
+  font-size: 100px;
+  line-height: 200px;
+  font-weight: bold;
+  color: var(--clr-grey);
+
+  top: 24rem;
+  right: 2rem;
+  z-index: 910;
+}
+
+.desc-container{
+  margin-top: 3rem;
+ }
+.slideshow-item.active {
+  opacity: 1; /* Show the active item */
+  transform: translateX(0); /* Reset transform */
+}
+
+.slideshow-item.prev {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slideshow-item.next {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.prev-button,
+.next-button,
+toggle-button {
+  background-color: var(--clr-grey);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  
+  font-family: 'Libre Baskerville', 'Courier New', Courier, monospace;
+
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color:var(--clr-black); /* Background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+.tog-button:hover{
+  color: var(--clr-grey);
+}
+
+.prev-button[disabled],
+.next-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.button-container{
+  margin-top: 0rem;
+  position: relative;
+  
+}
+
+.tog-button {
+  /* Reset default button styles */
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none; /* Remove the default focus outline */
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+ 
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px; /* Adjust the height as needed */
+  background-color: var(--clr-grey); /* Gray background for the progress bar */
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--clr-black); /* Blue color for the fill */
+  transition: width 0.5s; /* Add a transition for the width property */
+}
+
+@media screen and (min-width: 850px) {
+
+.slideshow-container{
+    height: 1000px;
+  }
+
+.thumbnail-container{
+    width:475px;
+    height: 560px;
+  }
+  
+.yea{
+  font-size: 200px;
+  color: var(--clr-light-grey);
+  top: 38rem;
+  left: 3rem;
+  z-index: -910;
+}
+
+.title{
+  position:absolute;
+  top:0;
+  left:18rem;
+  background-color: var(--clr-white);
+  z-index: 100;
+  width: 445px;
+  height: 302px;
+  padding: 1rem;
+  background-color: var(--clr-white);
+  padding-left: 0;
+  
+}
+
+.title h2{
+  margin-bottom: 1rem;
+  padding-left: 3rem;
+  margin-top: 3rem;
+  font-size: 56px;
+  line-height: 64px;
+ 
+}
+.title h3{
+  padding-left: 3rem;
+}
+
+.artist-iimage-container{
+  position: absolute;
+  width:128px;
+  height: 128px;
+  top:17rem;
+  left:33rem;
+}
+
+.desc-container{
+  width: 65%;
+  padding: 2rem;
+  margin-left: 5rem;
+}
+
+.slideshow-item {
+  width: 80%;
+  left: 10%;
+}
+
+}
+
+@media screen and (min-width: 1250px) {
+
+  .slideshow-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 1000px;
+    background-color: var(--clr-white);
+    overflow: hidden;
+  }
+  
+  .slideshow-item {
+   
+    width: 100%;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   
+  }
+
+  .column1{
+    margin-top: 9rem;
+  }
+  .column2{
+    margin-top: 9rem;
+  }
+
+  .yea{
+    width: 40%;
+    margin-left: 49rem;
+    margin-top: -30rem;
+    
+  }
+
+  .title{
+    top:6rem;
+    left:18rem;
+  }
+
+  .artist-iimage-container{
+    top:39rem;
+    left:33rem;
+  }
+
+  .slideshow-container{
+    height: 900px;
+    margin-top: 0;
+  }
+  
+}
+
+
+
+
+
