@@ -537,6 +537,81 @@ toggle-button {
   
 }
 
+@media (max-width: 450px){
+
+  .home-title-container h1 {
+    font-size: 2.3rem;
+   }
+
+   .link1{
+    font-size: 0.5rem;
+   }
+
+   .yea{
+   
+    font-size: 3.5rem;
+   }
+
+
+}
+
+
+@media (max-width: 300px) {
+
+
+  .home-title-container h1 {
+    font-size: 1.3rem;
+   }
+
+   .link1{
+    font-size: 0.5rem;
+   }
+
+   .gallery-image-name{
+    margin-bottom: 1.5rem;
+   }
+
+   .yea{
+   
+    font-size: 2.5rem;
+   }
+
+   .prev-button, .next-button{
+
+    width: 3rem;
+    height: 2rem;
+   }
+   
+
+   .slideshow-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 1100px;
+   
+    background-color: var(--clr-white);
+    overflow: hidden;
+  }
+
+}
+
+@media screen and (min-height: 1030px) {
+
+  .slideshow-container {
+   
+    height: 1300px;
+    height: 100vh;
+
+  }
+
+  .slideshow-item{
+    margin-top: 14rem;
+   
+  }
+
+}
+
+
 
 
 

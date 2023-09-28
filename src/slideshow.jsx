@@ -103,15 +103,15 @@ const Slideshow = () => {
 
       <div className='button-container'>
         <button className="prev-button" onClick={goToPrevious} disabled={currentIndex == 0}>
-            &#8249; Previous
+            &#8249; 
         </button>
 
             <button className="next-button" onClick={goToNext} disabled={ currentIndex== Data.length - 1}>
-            Next &#8250;
+             &#8250;
         </button>
 
         <button className="tog-button link1 " onClick={toggleSlideshow}>
-            {isPlaying ? 'Stop Slideshow' : 'Resume Slideshow'}
+            {isPlaying ? 'Stop ' : 'Resume '}
         </button>
 
 
