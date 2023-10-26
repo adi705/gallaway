@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Data from './data';
 
 const Slideshow = () => {
+
+  // usestates to implement slideshow logic and lightbox view
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -10,16 +12,19 @@ const Slideshow = () => {
   useEffect(() => {
     let intervalId;
 
+    // Check if the component is currently in a playing state.
     if (isPlaying) {
+      // If playing, set up an interval to automatically go to the next item.
       intervalId = setInterval(() => {
         goToNext();
-      }, 7000);
+      }, 7000); // Interval set to 7 seconds (7000 milliseconds).
     }
-
+    // Define a cleanup function for when the component unmounts or the dependencies change.
     return () => {
+      // Clear the interval when the component is unmounted or the dependencies change.
       clearInterval(intervalId);
     };
-  }, [isPlaying, currentIndex]);
+  }, [isPlaying, currentIndex]);  // Dependencies that trigger the effect.
 
   useEffect(() => {
     // Calculate the progress width based on the current index and the total number of items
@@ -71,24 +76,24 @@ const Slideshow = () => {
                 }`} >
                 
                <div className='column1'>
-                <div className='thumbnail-container'>    
-                  <img className='thumbnail-image' src={Data[currentIndex].images.thumbnail} alt="wooooo" onClick={openLightbox}/>
-                </div>
-              
-                <div className='title'>  
-                    <h2>{Data[currentIndex].name}</h2>
-                    <h3>{Data[currentIndex].artist.name}</h3>
-                </div>
+                  <div className='thumbnail-container'>    
+                    <img className='thumbnail-image' src={Data[currentIndex].images.thumbnail} alt="wooooo" onClick={openLightbox}/>
+                  </div>
+                
+                  <div className='title'>  
+                      <h2>{Data[currentIndex].name}</h2>
+                      <h3>{Data[currentIndex].artist.name}</h3>
+                  </div>
 
-                <div className='artist-iimage-container'>
-                    <img src={Data[currentIndex].artist.image} />  
-                </div>
+                  <div className='artist-iimage-container'>
+                      <img src={Data[currentIndex].artist.image} />  
+                  </div>
                 </div>
 
                 <div className='column2'>
-                <p className='yea'> {Data[currentIndex].year}</p>
+                  <p className='yea'> {Data[currentIndex].year}</p>
 
-                <div className='desc-container'><p>{Data[currentIndex].description}</p></div>
+                  <div className='desc-container'><p>{Data[currentIndex].description}</p></div>
                 </div>
                
 
